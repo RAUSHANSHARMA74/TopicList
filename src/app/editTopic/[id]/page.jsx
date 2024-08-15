@@ -5,7 +5,7 @@ import Navbar from '../../Navbar.jsx'
 import { useParams } from 'next/navigation.js'
 const apiUrl = "/api/topic";
 
-export default function page() {
+export default function Page() {
     const [update, setUpdate] = useState({
         title: "",
         description: ""

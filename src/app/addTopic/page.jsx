@@ -5,7 +5,7 @@ import Navbar from '../Navbar.jsx'
 
 const apiUrl = "/api/topic";
 
-export default function page() {
+export default function Page() {
     const [topic, setTopic] = useState({
         title: "",
         description: ""

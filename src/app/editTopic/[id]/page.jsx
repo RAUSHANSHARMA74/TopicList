@@ -1,8 +1,8 @@
 "use client"
 import Swal from 'sweetalert2';
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../Navbar'
-import { useParams } from 'next/navigation'
+import Navbar from '../../Navbar.jsx'
+import { useParams } from 'next/navigation.js'
 const apiUrl = "/api/topic";
 
 export default function page() {

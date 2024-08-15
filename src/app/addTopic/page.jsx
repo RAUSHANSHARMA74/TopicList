@@ -1,7 +1,7 @@
 "use client"
 import Swal from 'sweetalert2';
 import React, { useState } from 'react'
-import Navbar from '../navbar'
+import Navbar from '../Navbar.jsx'
 
 const apiUrl = "/api/topic";
 

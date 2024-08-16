@@ -25,10 +25,6 @@ export async function GET(request) {
             totalItems: totalDocuments,
             topicList,
         }, { status: 200, statusText: "Get all topics" });
-        // console.log({ hello: "raushan" })
-        // return NextResponse.json({
-        //     name: 'raushan'
-        // }, { status: 200, statusText: "Get all topics" });
 
     } catch (error) {
         console.error("Error while getting topic data:", error);
@@ -45,11 +41,7 @@ export async function POST(request) {
         await newTopic.save();
 
         return NextResponse.json({ message: "Topic added successfully", topic: newTopic }, { status: 201 });
-        // console.log({ hello: "raushan", body })
-        // return NextResponse.json({
-        //     name: 'raushan',
-        //     body
-        // }, { status: 200, statusText: "Get all topics" });
+
     } catch (error) {
         console.error("Error while adding topic data:", error);
 

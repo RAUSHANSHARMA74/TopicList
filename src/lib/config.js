@@ -1,3 +1,4 @@
+"use server"
 import mongoose from 'mongoose';
 
 const mongoDB = process.env.NEXT_PUBLIC_MONGODB;

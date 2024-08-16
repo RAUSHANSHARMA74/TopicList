@@ -1,3 +1,5 @@
+"use server"
+
 import { NextResponse } from "next/server";
 import TopicModel from "@/models/topic.model";
 export async function GET(request) {

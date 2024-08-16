@@ -37,11 +37,15 @@ export async function GET(request) {
 export async function POST(request) {
     try {
         const body = await request.json();
-        const newTopic = new TopicModel(body);
-        await newTopic.save();
+        // const newTopic = new TopicModel(body);
+        // await newTopic.save();
 
-        return NextResponse.json({ message: "Topic added successfully", topic: newTopic }, { status: 201 });
-
+        // return NextResponse.json({ message: "Topic added successfully", topic: newTopic }, { status: 201 });
+        console.log({ hello: "raushan", body })
+        return NextResponse.json({
+            name: 'raushan',
+            body
+        }, { status: 200, statusText: "Get all topics" });
     } catch (error) {
         console.error("Error while adding topic data:", error);
 

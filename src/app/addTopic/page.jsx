@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import React, { useState } from 'react'
 import Navbar from '../Navbar.jsx'
 
-const apiUrl = "/api/topic";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Page() {
     const [topic, setTopic] = useState({

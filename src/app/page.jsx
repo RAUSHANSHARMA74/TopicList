@@ -6,7 +6,8 @@ import Navbar from "./Navbar";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { useEffect, useState } from "react";
-const apiUrl = "/api/topic";
+// const apiUrl = "/api/topic";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   const [topicData, setTopicData] = useState([]);

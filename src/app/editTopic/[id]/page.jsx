@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../Navbar.jsx'
 import { useParams } from 'next/navigation.js'
-const apiUrl = "/api/topic";
+// const apiUrl = "/api/topic";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Page() {
     const [update, setUpdate] = useState({

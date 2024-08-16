@@ -1,11 +1,13 @@
 "use server"
 import { NextResponse } from "next/server";
-import TopicModel from "@/models/topic.model.js";
+import TopicModel from "@/lib/model/topic";
+import connectDB from "@/lib/config";
 
 export async function GET(request, { params }) {
     const { id } = params;
 
     try {
+        await connectDB()
         const getOneTopic = await TopicModel.findOne({ _id: id, deleted: false });
 
         if (!getOneTopic) {
@@ -28,6 +30,8 @@ export async function PATCH(request, { params }) {
     const { id } = params;
 
     try {
+        await connectDB()
+
         const body = await request.json();
 
         const updatedTopic = await TopicModel.findOneAndUpdate(
@@ -52,6 +56,8 @@ export async function DELETE(request, { params }) {
     const { id } = params;
 
     try {
+        await connectDB()
+
         const deletedTopic = await TopicModel.findByIdAndUpdate(id, { deleted: true }, { new: true });
 
         if (!deletedTopic) {

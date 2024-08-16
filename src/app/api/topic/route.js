@@ -1,31 +1,34 @@
 "use server"
-
 import { NextResponse } from "next/server";
-import TopicModel from "@/models/topic.model.js";
+import TopicModel from "@/lib/model/topic";
+import connectDB from "@/lib/config";
+
+
 export async function GET(request) {
     try {
-        // const { searchParams } = new URL(request.url);
-        // let page = parseInt(searchParams.get('page')) || 1;
-        // let limit = parseInt(searchParams.get('limit')) || 5;
-        // const skip = (page - 1) * limit;
+        await connectDB()
+        const { searchParams } = new URL(request.url);
+        let page = parseInt(searchParams.get('page')) || 1;
+        let limit = parseInt(searchParams.get('limit')) || 5;
+        const skip = (page - 1) * limit;
 
-        // const [totalDocuments, topicList] = await Promise.all([
-        //     TopicModel.countDocuments({ deleted: false }),
-        //     TopicModel.find({ deleted: false }).limit(limit).skip(skip)
-        // ]);
+        const [totalDocuments, topicList] = await Promise.all([
+            TopicModel.countDocuments({ deleted: false }),
+            TopicModel.find({ deleted: false }).limit(limit).skip(skip)
+        ]);
 
-        // const totalPages = Math.ceil(totalDocuments / limit);
+        const totalPages = Math.ceil(totalDocuments / limit);
 
-        // return NextResponse.json({
-        //     currentPage: page,
-        //     totalPages,
-        //     totalItems: totalDocuments,
-        //     topicList,
-        // }, { status: 200, statusText: "Get all topics" });
-        console.log({ hello: "raushan" })
         return NextResponse.json({
-            name: 'raushan'
+            currentPage: page,
+            totalPages,
+            totalItems: totalDocuments,
+            topicList,
         }, { status: 200, statusText: "Get all topics" });
+        // console.log({ hello: "raushan" })
+        // return NextResponse.json({
+        //     name: 'raushan'
+        // }, { status: 200, statusText: "Get all topics" });
 
     } catch (error) {
         console.error("Error while getting topic data:", error);
@@ -36,6 +39,7 @@ export async function GET(request) {
 
 export async function POST(request) {
     try {
+        await connectDB()
         const body = await request.json();
         const newTopic = new TopicModel(body);
         await newTopic.save();

@@ -7,23 +7,10 @@ import connectDB from "@/lib/config";
 export async function GET(request) {
     try {
         await connectDB()
-        const { searchParams } = new URL(request.url);
-        let page = parseInt(searchParams.get('page')) || 1;
-        let limit = parseInt(searchParams.get('limit')) || 5;
-        const skip = (page - 1) * limit;
 
-        const [totalDocuments, topicList] = await Promise.all([
-            TopicModel.countDocuments({ deleted: false }),
-            TopicModel.find({ deleted: false }).limit(limit).skip(skip)
-        ]);
-
-        const totalPages = Math.ceil(totalDocuments / limit);
-
+        const topicList = await TopicModel.find({ deleted: false });
         return NextResponse.json({
-            currentPage: page,
-            totalPages,
-            totalItems: totalDocuments,
-            topicList,
+            topicList
         }, { status: 200, statusText: "Get all topics" });
 
     } catch (error) {
